@@ -1,0 +1,110 @@
+{
+  "color": {
+    "ink": {
+      "$type": "color",
+      "$value": "#141413"
+    },
+    "paper": {
+      "$type": "color",
+      "$value": "#faf9f5"
+    },
+    "linen": {
+      "$type": "color",
+      "$value": "#e8e6dc"
+    },
+    "stone": {
+      "$type": "color",
+      "$value": "#b0aea5"
+    },
+    "ember": {
+      "$type": "color",
+      "$value": "#d97757"
+    },
+    "sky": {
+      "$type": "color",
+      "$value": "#6a9bcc"
+    },
+    "moss": {
+      "$type": "color",
+      "$value": "#788c5d"
+    },
+    "ink-700": {
+      "$type": "color",
+      "$value": "#3d3d3a"
+    },
+    "ink-500": {
+      "$type": "color",
+      "$value": "#5e5d57"
+    },
+    "ember-700": {
+      "$type": "color",
+      "$value": "#9c4124"
+    },
+    "sky-700": {
+      "$type": "color",
+      "$value": "#3a6a99"
+    },
+    "moss-700": {
+      "$type": "color",
+      "$value": "#56683c"
+    }
+  },
+  "font": {
+    "heading": {
+      "$type": "fontFamily",
+      "$value": [
+        "Poppins",
+        "Helvetica Neue",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "body": {
+      "$type": "fontFamily",
+      "$value": [
+        "Lora",
+        "Georgia",
+        "Times New Roman",
+        "serif"
+      ]
+    }
+  },
+  "radius": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "8px"
+    }
+  },
+  "spacing": {
+    "base": {
+      "$type": "dimension",
+      "$value": "4px"
+    }
+  },
+  "motion": {
+    "instant": {
+      "$type": "duration",
+      "$value": "80ms"
+    },
+    "fast": {
+      "$type": "duration",
+      "$value": "120ms"
+    },
+    "base": {
+      "$type": "duration",
+      "$value": "200ms"
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "320ms"
+    }
+  }
+}

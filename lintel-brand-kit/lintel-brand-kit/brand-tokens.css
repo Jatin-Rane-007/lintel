@@ -1,0 +1,24 @@
+:root {
+  --lintel-ink: #141413;
+  --lintel-paper: #faf9f5;
+  --lintel-linen: #e8e6dc;
+  --lintel-stone: #b0aea5;
+  --lintel-ember: #d97757;
+  --lintel-sky: #6a9bcc;
+  --lintel-moss: #788c5d;
+  --lintel-ink-700: #3d3d3a;
+  --lintel-ink-500: #5e5d57;
+  --lintel-ember-700: #9c4124;
+  --lintel-sky-700: #3a6a99;
+  --lintel-moss-700: #56683c;
+  --lintel-font-heading: Poppins, "Helvetica Neue", Arial, sans-serif;
+  --lintel-font-body: Lora, Georgia, "Times New Roman", serif;
+  --lintel-radius-sm: 2px;
+  --lintel-radius-md: 4px;
+  --lintel-radius-lg: 8px;
+  --lintel-space: 4px;
+  --lintel-motion-instant: 80ms;
+  --lintel-motion-fast: 120ms;
+  --lintel-motion-base: 200ms;
+  --lintel-motion-slow: 320ms;
+}

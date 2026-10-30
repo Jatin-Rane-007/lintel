@@ -1,0 +1,17 @@
+/*
+ * NativeWind entry stylesheet.
+ *
+ * Native uses the Tailwind theme in `tailwind.config.js`; this file mainly
+ * carries the web build's base layer. Brand colours are never declared here —
+ * `src/theme/palette.json` is the only source, so utilities can't drift.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+}
