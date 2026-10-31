@@ -4,26 +4,25 @@
     "slug": "lintel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/brand/app-icon.png",
     "scheme": "lintel",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon",
+      "icon": "./assets/brand/app-icon.png",
       "bundleIdentifier": "com.lintel.app"
     },
     "android": {
       "package": "com.lintel.app",
       "adaptiveIcon": {
-        "backgroundColor": "#faf9f5",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#141413",
+        "foregroundImage": "./assets/brand/android-icon-foreground.png",
+        "monochromeImage": "./assets/brand/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "server",
-      "favicon": "./lintel-brand-kit/lintel-brand-kit/web/favicon-32.png"
+      "favicon": "./assets/brand/web/favicon-32.png"
     },
     "plugins": [
       "expo-router",
@@ -31,9 +30,13 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#faf9f5",
-          "image": "./lintel-brand-kit/lintel-brand-kit/logo/png/lintel-symbol-primary@2x.png",
-          "imageWidth": 96,
-          "resizeMode": "contain"
+          "image": "./assets/brand/splash-mark-light.png",
+          "imageWidth": 132,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#141413",
+            "image": "./assets/brand/splash-mark-dark.png"
+          }
         }
       ],
       "expo-secure-store"

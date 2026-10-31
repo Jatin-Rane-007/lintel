@@ -116,6 +116,9 @@ export function FilterModal({
       animationType="slide"
       transparent
       statusBarTranslucent
+      // Without this the dialog window stops above the system navigation bar on
+      // Android 15, so the sheet floats and the tab bar stays lit underneath.
+      navigationBarTranslucent
     >
       <View style={[styles.root, { backgroundColor: colors.scrim }]}>
         <Pressable
@@ -253,9 +256,12 @@ const styles = StyleSheet.create({
   },
   dock: {
     width: '100%',
+    // The cap belongs here: the sheet sizes to its content, and a percentage
+    // maxHeight inside an auto-height parent has nothing to resolve against.
+    maxHeight: '92%',
   },
   sheet: {
-    maxHeight: '88%',
+    flexShrink: 1,
     borderTopLeftRadius: radius.sheet,
     borderTopRightRadius: radius.sheet,
     overflow: 'hidden',
@@ -285,9 +291,12 @@ const styles = StyleSheet.create({
   },
   body: {
     flexGrow: 0,
+    // Yield to the sticky footer when the groups overflow the sheet.
+    flexShrink: 1,
   },
   bodyContent: {
-    paddingBottom: spacing[6],
+    // Breathing room so the last chip row never touches the footer rule.
+    paddingBottom: spacing[8],
   },
   group: {
     borderTopWidth: borderWidth.hairline,

@@ -1,7 +1,9 @@
 import { Image } from 'expo-image';
+import { Heart } from 'lucide-react-native';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useSavedProperty } from '@/hooks/use-saved-property';
 import { useThemeColors } from '@/hooks/use-theme';
 import { formatArea, formatPrice } from '@/lib/utils';
 import type { Property } from '@/types';
@@ -9,6 +11,7 @@ import { borderWidth, layout, radius, spacing } from '@/theme/tokens';
 
 import { ThemedText } from './themed-text';
 import { Badge } from './ui/badge';
+import { Icon } from './ui/icon';
 import { PressableScale } from './ui/pressable-scale';
 import { SunLine } from './ui/sun-line';
 import { TitleBlock } from './ui/title-block';
@@ -32,9 +35,11 @@ export type FeaturedCardProps = {
 export function FeaturedCard({ property, onPress, variant = 'folio' }: FeaturedCardProps) {
   const colors = useThemeColors();
   const [pressed, setPressed] = useState(false);
+  const { isSaved, saveFailed, toggleSave } = useSavedProperty(property.id);
 
   const cover = property.images?.[0];
   const isFolio = variant === 'folio';
+  const unavailable = property.is_sold;
 
   const specs = [
     { value: String(property.bedrooms), label: 'Beds' },
@@ -70,11 +75,31 @@ export function FeaturedCard({ property, onPress, variant = 'folio' }: FeaturedC
           />
         )}
 
-        {property.is_featured ? (
-          <View style={styles.badge}>
-            <Badge label="Featured" showIcon={false} />
+        {/* The opening card saves like every other one: the heart holds the
+            top-right corner so the gesture is learned once, on the largest
+            photograph in the app. `box-none` keeps the empty strip of the
+            overlay from swallowing the tap that opens the home. */}
+        <View style={styles.overlay} pointerEvents="box-none">
+          <View style={styles.badges}>
+            {property.is_featured ? <Badge label="Featured" showIcon={false} /> : null}
+            {unavailable ? <Badge label="No longer available" tone="unavailable" /> : null}
           </View>
-        ) : null}
+
+          <PressableScale
+            onPress={toggleSave}
+            accessibilityRole="button"
+            accessibilityLabel={isSaved ? 'Remove from saved' : 'Save this home'}
+            accessibilityState={{ selected: isSaved }}
+            style={[styles.save, { backgroundColor: colors.surface }]}
+          >
+            <Icon
+              glyph={Heart}
+              size="sm"
+              tone={isSaved ? 'accentText' : 'text'}
+              fill={isSaved ? colors.accentFill : 'transparent'}
+            />
+          </PressableScale>
+        </View>
       </View>
 
       {property.is_sold ? (
@@ -100,6 +125,12 @@ export function FeaturedCard({ property, onPress, variant = 'folio' }: FeaturedC
             {formatPrice(property.price)}
           </ThemedText>
         </View>
+
+        {saveFailed ? (
+          <ThemedText variant="caption" tone="errorText">
+            Couldn’t save this home. Try the heart again.
+          </ThemedText>
+        ) : null}
       </View>
 
       <TitleBlock cells={specs} />
@@ -130,10 +161,29 @@ const styles = StyleSheet.create({
   photoRail: {
     aspectRatio: 4 / 3,
   },
-  badge: {
+  overlay: {
     position: 'absolute',
-    top: spacing[3],
-    left: spacing[3],
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: spacing[3],
+    gap: spacing[2],
+  },
+  badges: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flexShrink: 1,
+    gap: spacing[2],
+  },
+  save: {
+    width: 40,
+    height: 40,
+    borderRadius: radius.full,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   sunLine: {
     marginTop: spacing[0],

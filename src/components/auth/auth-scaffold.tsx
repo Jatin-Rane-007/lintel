@@ -64,7 +64,7 @@ export function AuthScaffold({
           ]}
         >
           <View style={styles.header}>
-            <Wordmark size={typeScale.h2.fontSize} />
+            <Wordmark size={typeScale.h2.fontSize} mark />
             <ThemedText variant="label" tone="textMuted">
               {`Step ${step} of ${stepCount}`}
             </ThemedText>

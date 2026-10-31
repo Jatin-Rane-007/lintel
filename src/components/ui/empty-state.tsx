@@ -3,19 +3,24 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedText } from '../themed-text';
+import { LintelMark } from './lintel-mark';
 
 import { useThemeColors } from '@/hooks/use-theme';
-import { borderWidth, spacing } from '@/theme/tokens';
+import { spacing } from '@/theme/tokens';
+
+/** Mark height in the drawing. The threshold below it matches its width. */
+const DRAWING = 96;
+const DRAWING_WIDTH = (DRAWING * 176) / 152;
 
 /**
- * The house empty state (DESIGN.md §8.12): centered stack, a drawing — not an
- * icon — above the words, one sentence in Lora, then the action that fills the
- * screen. Centered is the one place §4.1 allows it.
+ * The house empty state (DESIGN.md §8.12): centered stack, the brand mark above
+ * the words, one sentence in Lora, then the action that fills the screen.
+ * Centered is the one place §4.1 allows it.
  *
- * The drawing is a doorway: three sides of a frame standing on the sun-line at
- * the threshold — the brand's own way of saying "nothing in here yet, but there
- * is light". The fourth side is deliberately open, so it never reads as a
- * broken picture.
+ * The mark is the doorway itself — a beam over two posts with one point of
+ * light in the opening — standing on a plain ink threshold. The point is the
+ * only ember in the region, so an empty screen still reads as "nothing here
+ * yet, but there is light".
  */
 export function EmptyState({
   title,
@@ -38,8 +43,8 @@ export function EmptyState({
     >
       <View style={styles.stack}>
         <View style={styles.drawing}>
-          <View style={[styles.frame, { borderColor: colors.borderStrong }]} />
-          <View style={[styles.threshold, { backgroundColor: colors.accentFill }]} />
+          <LintelMark size={DRAWING} />
+          <View style={[styles.threshold, { backgroundColor: colors.borderStrong }]} />
         </View>
 
         <ThemedText variant="h3" accessibilityRole="header" style={styles.centered}>
@@ -74,19 +79,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: spacing[4],
   },
-  frame: {
-    width: 72,
-    height: 96,
-    borderTopWidth: borderWidth.strong,
-    borderLeftWidth: borderWidth.strong,
-    borderRightWidth: borderWidth.strong,
-    borderTopLeftRadius: 36,
-    borderTopRightRadius: 36,
-  },
+  // The ground the doorway stands on: the mark's own width, so the posts land
+  // on it rather than hovering above it.
   threshold: {
-    width: 72,
+    width: DRAWING_WIDTH,
     height: 2,
-    marginTop: spacing[1],
   },
   centered: {
     textAlign: 'center',

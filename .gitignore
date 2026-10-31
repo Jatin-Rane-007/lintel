@@ -43,6 +43,9 @@ AGENTS.md
 .windsurf/
 .qoder/
 
+# scratch captures; docs/screenshots holds the curated set
+.screenshots/
+
 example
 
 # generated native folders

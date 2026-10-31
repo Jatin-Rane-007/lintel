@@ -66,7 +66,7 @@ export default function PropertyDetailScreen() {
   const [viewerOpen, setViewerOpen] = useState(false);
   const [contactError, setContactError] = useState(false);
 
-  const { isSaved, toggleSave } = useSavedProperty(id ?? '');
+  const { isSaved, saveFailed, toggleSave } = useSavedProperty(id ?? '');
 
   // The listing is read once per id. State is set from the response callback,
   // never during the effect body, so a slow network shows the skeleton and
@@ -300,6 +300,14 @@ export default function PropertyDetailScreen() {
             {formatListed(property.created_at)}
           </ThemedText>
         </Gutter>
+
+        {saveFailed ? (
+          <Gutter style={styles.notice}>
+            <Notice
+              message="This home could not be saved. Check your connection and tap the heart again."
+            />
+          </Gutter>
+        ) : null}
 
         {property.is_sold ? (
           <Gutter style={styles.notice}>

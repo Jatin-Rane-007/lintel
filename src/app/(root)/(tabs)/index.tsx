@@ -135,7 +135,7 @@ export default function HomeScreen() {
     <View>
       <Gutter>
         <View style={styles.masthead}>
-          <Wordmark size={22} />
+          <Wordmark size={22} mark />
           <ThemedText
             variant="meta"
             tone="textMuted"

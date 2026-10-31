@@ -16,10 +16,10 @@ import { Poppins_400Regular } from '@expo-google-fonts/poppins/400Regular';
 import { Poppins_500Medium } from '@expo-google-fonts/poppins/500Medium';
 import { Poppins_600SemiBold } from '@expo-google-fonts/poppins/600SemiBold';
 import { useFonts } from 'expo-font';
-import { Slot, ThemeProvider as NavigationThemeProvider } from 'expo-router';
+import { ThemeProvider as NavigationThemeProvider, Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -60,6 +60,9 @@ function ThemedApp() {
   );
 }
 
+/** How long the shell waits for the two faces before opening without them. */
+const FONT_WATCHDOG_MS = 4000;
+
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular,
@@ -70,17 +73,30 @@ export default function RootLayout() {
     Lora_600SemiBold,
   });
 
-  useEffect(() => {
-    // A font failure is not worth an empty screen: the system faces are the
-    // fallback stack and the type scale still holds its sizes.
-    if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync().catch(() => {
-        // Already hidden.
-      });
-    }
-  }, [fontError, fontsLoaded]);
+  // A font that never resolves must not cost the person the app. The splash is
+  // a native view held up by this component, so a load that stalls here reads
+  // as a frozen logo — the worst first impression there is. After the watchdog
+  // the shell opens on the fallback stack and the real faces slot in when they
+  // arrive.
+  const [watchdogFired, setWatchdogFired] = useState(false);
 
-  if (!fontsLoaded && !fontError) return null;
+  useEffect(() => {
+    const timer = setTimeout(() => setWatchdogFired(true), FONT_WATCHDOG_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Derived, not stored: a font failure is not worth an empty screen either —
+  // the system faces are the fallback stack and the type scale holds its sizes.
+  const ready = fontsLoaded || fontError != null || watchdogFired;
+
+  useEffect(() => {
+    if (!ready) return;
+    SplashScreen.hideAsync().catch(() => {
+      // Already hidden.
+    });
+  }, [ready]);
+
+  if (!ready) return null;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

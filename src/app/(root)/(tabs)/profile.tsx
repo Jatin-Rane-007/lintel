@@ -1,4 +1,5 @@
 import { useAuth, useUser } from '@clerk/expo';
+import Constants from 'expo-constants';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
@@ -15,11 +16,13 @@ import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
+import { LintelMark } from '@/components/ui/lintel-mark';
 import { Notice } from '@/components/ui/notice';
 import { PageHeader } from '@/components/ui/page-header';
 import { PressableScale } from '@/components/ui/pressable-scale';
 import { Gutter, Screen } from '@/components/ui/screen';
 import { Segmented } from '@/components/ui/segmented';
+import { Wordmark } from '@/components/ui/wordmark';
 import { useThemeColors, useThemePreference } from '@/hooks/use-theme';
 import { useUserStore } from '@/store/user-store';
 import { borderWidth, radius, spacing } from '@/theme/tokens';
@@ -31,7 +34,9 @@ const THEME_OPTIONS: { label: string; value: ThemePreference }[] = [
   { label: 'Dark', value: 'dark' },
 ];
 
-const SUPPORT_EMAIL = 'piyushagarwalvo@gmail.com';
+// Placeholder until a support domain exists. Swap this for the real address and
+// the menu row and the mailto both follow it.
+const SUPPORT_EMAIL = 'support@lintel.app';
 
 /**
  * Account (§6.2). The profile sits on the page ground as a ruled sheet: who
@@ -251,6 +256,8 @@ export default function ProfileScreen() {
             Your shortlist stays with your account and is here when you return.
           </ThemedText>
         </Gutter>
+
+        <BrandSignOff />
       </ScrollView>
     </Screen>
   );
@@ -287,6 +294,27 @@ function MenuRow({
       </View>
       <Icon glyph={ChevronRight} size="sm" tone="textMuted" />
     </PressableScale>
+  );
+}
+
+/**
+ * The stacked lockup from the brand kit closes the page: mark, wordmark, and
+ * the build the person is actually running. It is the only place the app signs
+ * its own name, so it stays quiet — no rule above it, no card around it.
+ */
+function BrandSignOff() {
+  const version = Constants.expoConfig?.version;
+
+  return (
+    <View style={styles.signOff}>
+      <LintelMark size={34} />
+      <Wordmark size={16} />
+      {version ? (
+        <ThemedText variant="caption" tone="textMuted">
+          {`Version ${version}`}
+        </ThemedText>
+      ) : null}
+    </View>
   );
 }
 
@@ -360,5 +388,11 @@ const styles = StyleSheet.create({
   },
   signOutNote: {
     paddingTop: spacing[1],
+  },
+  signOff: {
+    alignItems: 'center',
+    gap: spacing[2],
+    paddingTop: spacing[16],
+    paddingBottom: spacing[4],
   },
 });

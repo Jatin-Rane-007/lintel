@@ -41,9 +41,9 @@ export default function SavedScreen() {
 
     const { data, error } = await authSupabase
       .from('saved_properties')
-      .select('id, property_id, properties(*)')
+      .select('id, property_id, created_at, properties(*)')
       .eq('user_clerk_id', userId)
-      .order('id', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (error) {
       setFailed(true);

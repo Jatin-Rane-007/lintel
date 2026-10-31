@@ -37,7 +37,7 @@ export type PropertyCardProps = {
 export function PropertyCard({ property, onPress, onUnsave, showSave = true }: PropertyCardProps) {
   const colors = useThemeColors();
   const [pressed, setPressed] = useState(false);
-  const { isSaved, toggleSave } = useSavedProperty(property.id, onUnsave);
+  const { isSaved, saveFailed, toggleSave } = useSavedProperty(property.id, onUnsave);
 
   const unavailable = property.is_sold;
   const cover = property.images?.[0];
@@ -140,6 +140,14 @@ export function PropertyCard({ property, onPress, onUnsave, showSave = true }: P
         <ThemedText variant="meta" tone="textMuted" numberOfLines={1}>
           {property.city}
         </ThemedText>
+
+        {/* A save that did not land says so here, once, in the card it belongs
+            to — never as a heart that silently springs back. */}
+        {saveFailed ? (
+          <ThemedText variant="caption" tone="errorText" style={styles.saveError}>
+            Couldn’t save this home. Try the heart again.
+          </ThemedText>
+        ) : null}
       </View>
 
       <TitleBlock cells={specs} style={styles.titleBlock} />
@@ -207,6 +215,9 @@ const styles = StyleSheet.create({
   },
   struck: {
     textDecorationLine: 'line-through',
+  },
+  saveError: {
+    marginTop: spacing[1],
   },
   titleBlock: {
     borderBottomWidth: 0,
