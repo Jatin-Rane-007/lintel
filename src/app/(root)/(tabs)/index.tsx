@@ -1,20 +1,8 @@
 import { useUser } from '@clerk/expo';
 import { useFocusEffect, useRouter } from 'expo-router';
-import {
-  Building2,
-  Home as HomeGlyph,
-  Square,
-  Trees,
-  type LucideIcon,
-} from 'lucide-react-native';
+import { Building2, Home as HomeGlyph, Square, Trees, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
-import {
-  FlatList,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { FlatList, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 
 import { FeaturedCard } from '@/components/featured-card';
 import { PropertyCard } from '@/components/property-card';
@@ -136,12 +124,7 @@ export default function HomeScreen() {
       <Gutter>
         <View style={styles.masthead}>
           <Wordmark size={22} mark />
-          <ThemedText
-            variant="meta"
-            tone="textMuted"
-            numberOfLines={1}
-            style={styles.greeting}
-          >
+          <ThemedText variant="meta" tone="textMuted" numberOfLines={1} style={styles.greeting}>
             {greeting}
           </ThemedText>
         </View>
@@ -153,8 +136,8 @@ export default function HomeScreen() {
           Find a home with good light.
         </ThemedText>
         <ThemedText variant="bodyLg" tone="textSecondary">
-          A property browser for homes across India — search by city or
-          reference, open a home, save the ones you like.
+          A property browser for homes across India — search by city or reference, open a home, save
+          the ones you like.
         </ThemedText>
 
         <View style={styles.ledger}>
@@ -187,11 +170,7 @@ export default function HomeScreen() {
       {folio ? (
         <Gutter style={styles.section}>
           <SectionHeader title="Today's folio" actionLabel="See all" onAction={openSearch} />
-          <FeaturedCard
-            property={folio}
-            variant="folio"
-            onPress={() => openProperty(folio.id)}
-          />
+          <FeaturedCard property={folio} variant="folio" onPress={() => openProperty(folio.id)} />
         </Gutter>
       ) : null}
 

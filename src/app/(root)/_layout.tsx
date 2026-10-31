@@ -1,8 +1,8 @@
 import { useAuth } from '@clerk/expo';
 import { Redirect, Stack } from 'expo-router';
 
-import { useUserSync } from '@/hooks/use-user-sync';
 import { useThemeColors } from '@/hooks/use-theme';
+import { useUserSync } from '@/hooks/use-user-sync';
 
 /**
  * Everything behind the door. A stack, not a slot, so a property opens over

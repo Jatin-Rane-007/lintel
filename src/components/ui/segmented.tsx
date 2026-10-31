@@ -25,7 +25,12 @@ export type SegmentedProps<T extends string> = {
  * selected segment is the inverse surface — the same "chosen" language as a
  * selected chip, so the two never disagree about what selection looks like.
  */
-export function Segmented<T extends string>({ options, value, onChange, label }: SegmentedProps<T>) {
+export function Segmented<T extends string>({
+  options,
+  value,
+  onChange,
+  label,
+}: SegmentedProps<T>) {
   const colors = useThemeColors();
 
   return (
@@ -44,10 +49,7 @@ export function Segmented<T extends string>({ options, value, onChange, label }:
             accessibilityRole="radio"
             accessibilityState={{ selected }}
             accessibilityLabel={option.label}
-            style={[
-              styles.segment,
-              selected && { backgroundColor: colors.inverseBg },
-            ]}
+            style={[styles.segment, selected && { backgroundColor: colors.inverseBg }]}
           >
             <ThemedText variant="uiSm" tone={selected ? 'textInverse' : 'textSecondary'}>
               {option.label}

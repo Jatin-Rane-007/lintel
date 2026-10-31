@@ -1,11 +1,6 @@
 import { Check, CircleAlert } from 'lucide-react-native';
 import { type ReactNode } from 'react';
-import {
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ThemedText } from '../themed-text';
@@ -49,7 +44,10 @@ export function AuthScaffold({
   const { isAtLeastMedium } = useBreakpoint();
 
   return (
-    <SafeAreaView style={[styles.root, { backgroundColor: colors.bg }]} edges={['top', 'left', 'right']}>
+    <SafeAreaView
+      style={[styles.root, { backgroundColor: colors.bg }]}
+      edges={['top', 'left', 'right']}
+    >
       <KeyboardAvoidingView
         // Android 15 is edge-to-edge, so the window no longer resizes for the
         // keyboard (`adjustResize` is a no-op) — both platforms need padding.

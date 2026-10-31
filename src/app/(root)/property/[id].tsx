@@ -126,8 +126,8 @@ export default function PropertyDetailScreen() {
       .slice(0, 4)
       .toUpperCase()}, ${property.title}. Is it still available?`;
 
-    Linking.openURL(`https://wa.me/${AGENT_PHONE}?text=${encodeURIComponent(message)}`).catch(
-      () => setContactError(true),
+    Linking.openURL(`https://wa.me/${AGENT_PHONE}?text=${encodeURIComponent(message)}`).catch(() =>
+      setContactError(true),
     );
   };
 
@@ -303,9 +303,7 @@ export default function PropertyDetailScreen() {
 
         {saveFailed ? (
           <Gutter style={styles.notice}>
-            <Notice
-              message="This home could not be saved. Check your connection and tap the heart again."
-            />
+            <Notice message="This home could not be saved. Check your connection and tap the heart again." />
           </Gutter>
         ) : null}
 
@@ -416,11 +414,7 @@ export default function PropertyDetailScreen() {
         </View>
         <Button
           label={property.is_sold ? 'Find similar homes' : 'Message the agent'}
-          onPress={
-            property.is_sold
-              ? () => router.push('/(root)/(tabs)/search')
-              : contactAgent
-          }
+          onPress={property.is_sold ? () => router.push('/(root)/(tabs)/search') : contactAgent}
           style={styles.actionButton}
         />
       </View>

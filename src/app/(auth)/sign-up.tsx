@@ -103,12 +103,7 @@ export default function SignUpScreen() {
         description={`We sent a code to ${email.trim() || 'your address'}. It expires in a few minutes.`}
         footer={
           <>
-            <Button
-              label="Verify and continue"
-              large
-              loading={isLoading}
-              onPress={verify}
-            />
+            <Button label="Verify and continue" large loading={isLoading} onPress={verify} />
             <AuthLinkRow>
               <TextLink
                 label="Send a new code"

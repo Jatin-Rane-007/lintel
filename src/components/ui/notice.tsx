@@ -44,12 +44,7 @@ export function Notice({ message, tone = 'error', actionLabel, onAction }: Notic
         {message}
       </ThemedText>
       {actionLabel && onAction ? (
-        <Button
-          label={actionLabel}
-          variant="tertiary"
-          onPress={onAction}
-          style={styles.action}
-        />
+        <Button label={actionLabel} variant="tertiary" onPress={onAction} style={styles.action} />
       ) : null}
     </View>
   );

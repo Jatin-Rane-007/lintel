@@ -99,19 +99,19 @@
 
 ## Stack
 
-| Layer          | Choice                                                    |
-| -------------- | --------------------------------------------------------- |
-| Runtime        | Expo SDK 58 · React Native 0.88 · React 19.3              |
-| Language       | TypeScript 6 (strict) · React Compiler enabled             |
-| Routing        | Expo Router 58 — file-based, typed routes, headless tabs   |
-| Auth           | Clerk (`@clerk/expo`) with a SecureStore token cache       |
-| Data           | Supabase Postgres + row-level security                     |
-| Client state   | Zustand 5 (filters, user)                                  |
-| Styling        | Design tokens + `StyleSheet`; Poppins (display) & Lora (reading) |
-| Motion         | Reanimated 4 · Gesture Handler 3                           |
-| Media          | `expo-image`, `expo-image-picker`, `react-native-svg`       |
-| Maps           | `react-native-webview` with an OpenStreetMap embed          |
-| Build          | Expo CNG (prebuild) → Gradle locally, or EAS in the cloud   |
+| Layer        | Choice                                                           |
+| ------------ | ---------------------------------------------------------------- |
+| Runtime      | Expo SDK 58 · React Native 0.88 · React 19.3                     |
+| Language     | TypeScript 6 (strict) · React Compiler enabled                   |
+| Routing      | Expo Router 58 — file-based, typed routes, headless tabs         |
+| Auth         | Clerk (`@clerk/expo`) with a SecureStore token cache             |
+| Data         | Supabase Postgres + row-level security                           |
+| Client state | Zustand 5 (filters, user)                                        |
+| Styling      | Design tokens + `StyleSheet`; Poppins (display) & Lora (reading) |
+| Motion       | Reanimated 4 · Gesture Handler 3                                 |
+| Media        | `expo-image`, `expo-image-picker`, `react-native-svg`            |
+| Maps         | `react-native-webview` with an OpenStreetMap embed               |
+| Build        | Expo CNG (prebuild) → Gradle locally, or EAS in the cloud        |
 
 <sub>NativeWind is present but is not the styling path: it supplies the colour-scheme channel and `global.css`, while every visual value comes from a token.</sub>
 
@@ -221,11 +221,11 @@ npm install
 npx expo start
 ```
 
-| Variable                            | Needed | Read by                                            |
-| ----------------------------------- | ------ | -------------------------------------------------- |
+| Variable                            | Needed | Read by                                                     |
+| ----------------------------------- | ------ | ----------------------------------------------------------- |
 | `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` | yes    | `src/app/_layout.tsx` — boot fails with a message naming it |
-| `EXPO_PUBLIC_SUPABASE_URL`          | yes    | `src/lib/supabase.ts`                              |
-| `EXPO_PUBLIC_SUPABASE_KEY`          | yes    | `src/lib/supabase.ts` — the anon key                |
+| `EXPO_PUBLIC_SUPABASE_URL`          | yes    | `src/lib/supabase.ts`                                       |
+| `EXPO_PUBLIC_SUPABASE_KEY`          | yes    | `src/lib/supabase.ts` — the anon key                        |
 
 The anon key ships in the bundle by design; row-level security, not secrecy, is
 what protects the data. `CLERK_SECRET_KEY` is **not** read anywhere in this app —
@@ -237,16 +237,16 @@ clone, `npm run android` prebuilds them; to force a clean regeneration use
 
 ## Scripts
 
-| Command                            | What it does                                |
-| ---------------------------------- | ------------------------------------------- |
-| `npm start`                        | Dev server (Metro + Expo Router)            |
-| `npm run android`                  | Prebuild, build and install a debug build   |
-| `npm run ios`                      | Same, for iOS                               |
-| `npm run web`                      | Dev server targeting the web                |
-| `npm run lint`                     | ESLint (`eslint-config-expo`)                |
-| `npm run typecheck`                | `tsc --noEmit`                              |
-| `npx expo run:android --variant release` | A signed release APK, bundle included  |
-| `npx expo-doctor`                  | Dependency and config audit                 |
+| Command                                  | What it does                              |
+| ---------------------------------------- | ----------------------------------------- |
+| `npm start`                              | Dev server (Metro + Expo Router)          |
+| `npm run android`                        | Prebuild, build and install a debug build |
+| `npm run ios`                            | Same, for iOS                             |
+| `npm run web`                            | Dev server targeting the web              |
+| `npm run lint`                           | ESLint (`eslint-config-expo`)             |
+| `npm run typecheck`                      | `tsc --noEmit`                            |
+| `npx expo run:android --variant release` | A signed release APK, bundle included     |
+| `npx expo-doctor`                        | Dependency and config audit               |
 
 ## Quality gates
 

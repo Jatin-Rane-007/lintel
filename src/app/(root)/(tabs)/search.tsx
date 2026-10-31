@@ -68,9 +68,7 @@ export default function SearchScreen() {
     if (minPrice !== null) query = query.gte('price', minPrice);
     if (maxPrice !== null) query = query.lte('price', maxPrice);
 
-    const { data, error } = await query
-      .order('created_at', { ascending: false })
-      .limit(60);
+    const { data, error } = await query.order('created_at', { ascending: false }).limit(60);
 
     // A newer query has started; this answer is stale.
     if (id !== requestId.current) return;
@@ -116,9 +114,7 @@ export default function SearchScreen() {
     <PressableScale
       onPress={() => setShowFilters(true)}
       accessibilityRole="button"
-      accessibilityLabel={
-        activeCount > 0 ? `Filters, ${activeCount} active` : 'Filters'
-      }
+      accessibilityLabel={activeCount > 0 ? `Filters, ${activeCount} active` : 'Filters'}
       style={styles.filtersTarget}
     >
       <View
@@ -237,8 +233,7 @@ export default function SearchScreen() {
               <View style={[styles.emptyRule, { backgroundColor: colors.accentFill }]} />
               <ThemedText variant="h3">No homes match these filters yet.</ThemedText>
               <ThemedText variant="bodySm" tone="textSecondary">
-                Try a wider price range or a different city, or start again with
-                nothing filtered.
+                Try a wider price range or a different city, or start again with nothing filtered.
               </ThemedText>
               <Button label="Clear filters" variant="secondary" onPress={clearAll} />
             </Gutter>

@@ -3,13 +3,7 @@ import Constants from 'expo-constants';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
-import {
-  Bookmark,
-  ChevronRight,
-  LifeBuoy,
-  SquarePlus,
-  type LucideIcon,
-} from 'lucide-react-native';
+import { Bookmark, ChevronRight, LifeBuoy, SquarePlus, type LucideIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -25,8 +19,8 @@ import { Segmented } from '@/components/ui/segmented';
 import { Wordmark } from '@/components/ui/wordmark';
 import { useThemeColors, useThemePreference } from '@/hooks/use-theme';
 import { useUserStore } from '@/store/user-store';
-import { borderWidth, radius, spacing } from '@/theme/tokens';
 import type { ThemePreference } from '@/theme/theme-provider';
+import { borderWidth, radius, spacing } from '@/theme/tokens';
 
 const THEME_OPTIONS: { label: string; value: ThemePreference }[] = [
   { label: 'System', value: 'system' },
@@ -34,9 +28,10 @@ const THEME_OPTIONS: { label: string; value: ThemePreference }[] = [
   { label: 'Dark', value: 'dark' },
 ];
 
-// Placeholder until a support domain exists. Swap this for the real address and
-// the menu row and the mailto both follow it.
-const SUPPORT_EMAIL = 'support@lintel.app';
+// GitHub's ID-based noreply address for this account. Public-safe: it carries
+// no personal mailbox, and revoking it is an email-settings toggle, not an
+// app release. The row's mailto: is the only place it surfaces.
+const SUPPORT_EMAIL = '75966408+Jatin-Rane-007@users.noreply.github.com';
 
 /**
  * Account (§6.2). The profile sits on the page ground as a ruled sheet: who
@@ -133,10 +128,7 @@ export default function ProfileScreen() {
 
   return (
     <Screen>
-      <ScrollView
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Gutter>
           <PageHeader title="Account" note={memberSince} />
         </Gutter>
@@ -152,7 +144,13 @@ export default function ProfileScreen() {
                 accessibilityLabel={`${name}'s profile photo`}
               />
             ) : (
-              <View style={[styles.avatar, styles.avatarFallback, { backgroundColor: colors.inverseBg }]}>
+              <View
+                style={[
+                  styles.avatar,
+                  styles.avatarFallback,
+                  { backgroundColor: colors.inverseBg },
+                ]}
+              >
                 <ThemedText variant="h1" tone="textInverse">
                   {name.charAt(0).toUpperCase()}
                 </ThemedText>
@@ -191,9 +189,7 @@ export default function ProfileScreen() {
               message={message.text}
               tone={message.tone === 'error' ? 'error' : 'success'}
               actionLabel={message.action === 'settings' ? 'Settings' : undefined}
-              onAction={
-                message.action === 'settings' ? () => Linking.openSettings() : undefined
-              }
+              onAction={message.action === 'settings' ? () => Linking.openSettings() : undefined}
             />
           </Gutter>
         ) : null}
@@ -234,7 +230,10 @@ export default function ProfileScreen() {
             <MenuRow
               icon={LifeBuoy}
               label="Help and support"
-              note={`Write to ${SUPPORT_EMAIL}`}
+              // The noreply address is too long for a one-line note and would
+              // truncate to noise, so the row says what it does and the mailto
+              // carries the destination.
+              note="Opens your email app"
               onPress={() =>
                 Linking.openURL(
                   `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Help with lintel')}`,

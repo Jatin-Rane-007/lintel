@@ -6,15 +6,15 @@ import { StyleSheet, View } from 'react-native';
 import { useSavedProperty } from '@/hooks/use-saved-property';
 import { useThemeColors } from '@/hooks/use-theme';
 import { formatArea, formatPrice } from '@/lib/utils';
-import type { Property } from '@/types';
 import { borderWidth, radius, spacing } from '@/theme/tokens';
+import type { Property } from '@/types';
 
 import { ThemedText } from './themed-text';
+import { Badge } from './ui/badge';
 import { Icon } from './ui/icon';
 import { PressableScale } from './ui/pressable-scale';
 import { SunLine } from './ui/sun-line';
 import { TitleBlock } from './ui/title-block';
-import { Badge } from './ui/badge';
 
 export type PropertyCardProps = {
   property: Property;
@@ -56,10 +56,7 @@ export function PropertyCard({ property, onPress, onUnsave, showSave = true }: P
       onPressOut={() => setPressed(false)}
       accessibilityRole="button"
       accessibilityLabel={`${property.title}, ${formatPrice(property.price)}, ${property.city}`}
-      style={[
-        styles.card,
-        { backgroundColor: colors.surface, borderColor: colors.borderHairline },
-      ]}
+      style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.borderHairline }]}
     >
       <View style={styles.photoFrame}>
         {cover ? (
@@ -121,11 +118,7 @@ export function PropertyCard({ property, onPress, onUnsave, showSave = true }: P
           {`Nº ${property.id.slice(0, 4).toUpperCase()} · ${property.type}`}
         </ThemedText>
 
-        <ThemedText
-          variant="priceLg"
-          tabular
-          style={unavailable ? styles.struck : undefined}
-        >
+        <ThemedText variant="priceLg" tabular style={unavailable ? styles.struck : undefined}>
           {formatPrice(property.price)}
         </ThemedText>
         {unavailable ? (

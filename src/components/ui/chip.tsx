@@ -23,7 +23,13 @@ export type ChipProps = {
  * border at rest. Selected is the inverse surface with a leading check — never
  * ember, so ember keeps its meaning as "act here" (§2.4).
  */
-export function Chip({ label, selected = false, onPress, onRemove, accessibilityLabel }: ChipProps) {
+export function Chip({
+  label,
+  selected = false,
+  onPress,
+  onRemove,
+  accessibilityLabel,
+}: ChipProps) {
   const colors = useThemeColors();
 
   return (

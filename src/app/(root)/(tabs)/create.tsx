@@ -190,8 +190,7 @@ export default function CreatePropertyScreen() {
   const [detecting, setDetecting] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const update = (fields: Partial<Draft>) =>
-    setDraft((previous) => ({ ...previous, ...fields }));
+  const update = (fields: Partial<Draft>) => setDraft((previous) => ({ ...previous, ...fields }));
 
   const pickPhotos = async () => {
     setErrors((previous) => ({ ...previous, photos: undefined }));
@@ -229,9 +228,7 @@ export default function CreatePropertyScreen() {
 
       try {
         const filename = `property_${Date.now()}_${Math.random().toString(36).slice(2)}.jpg`;
-        const bytes = Uint8Array.from(atob(asset.base64), (character) =>
-          character.charCodeAt(0),
-        );
+        const bytes = Uint8Array.from(atob(asset.base64), (character) => character.charCodeAt(0));
 
         const { error } = await authSupabase.storage
           .from('property-images')
@@ -239,9 +236,7 @@ export default function CreatePropertyScreen() {
 
         if (error) throw error;
 
-        const { data } = authSupabase.storage
-          .from('property-images')
-          .getPublicUrl(filename);
+        const { data } = authSupabase.storage.from('property-images').getPublicUrl(filename);
 
         uploaded.push(data.publicUrl);
         previews.push(asset.uri);
@@ -536,10 +531,7 @@ export default function CreatePropertyScreen() {
               />
             </Section>
 
-            <Section
-              title="Pin"
-              note="Used for the map on the listing. Optional, but worth it."
-            >
+            <Section title="Pin" note="Used for the map on the listing. Optional, but worth it.">
               <Button
                 label={detecting ? 'Reading your position' : 'Use my current position'}
                 variant="secondary"

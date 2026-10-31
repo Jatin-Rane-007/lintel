@@ -37,10 +37,7 @@ export function EmptyState({
   const colors = useThemeColors();
 
   return (
-    <SafeAreaView
-      style={[styles.root, { backgroundColor: colors.bg }]}
-      edges={edges}
-    >
+    <SafeAreaView style={[styles.root, { backgroundColor: colors.bg }]} edges={edges}>
       <View style={styles.stack}>
         <View style={styles.drawing}>
           <LintelMark size={DRAWING} />

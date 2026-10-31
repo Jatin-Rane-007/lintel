@@ -1,13 +1,6 @@
 import { X } from 'lucide-react-native';
 import { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ThemedText } from './themed-text';
@@ -18,12 +11,7 @@ import { TextField } from './ui/text-field';
 
 import { useThemeColors } from '@/hooks/use-theme';
 import { countLabel } from '@/lib/utils';
-import {
-  BED_OPTIONS,
-  PRICE_PRESETS,
-  PROPERTY_TYPES,
-  useFilterStore,
-} from '@/store/filter-store';
+import { BED_OPTIONS, PRICE_PRESETS, PROPERTY_TYPES, useFilterStore } from '@/store/filter-store';
 import { borderWidth, radius, spacing } from '@/theme/tokens';
 
 export type FilterModalProps = {
@@ -128,11 +116,7 @@ export function FilterModal({
           accessibilityLabel="Close filters"
         />
 
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={styles.dock}
-          pointerEvents="box-none"
-        >
+        <KeyboardAvoidingView behavior="padding" style={styles.dock} pointerEvents="box-none">
           <View
             style={[
               styles.sheet,

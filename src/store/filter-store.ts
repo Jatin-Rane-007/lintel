@@ -67,8 +67,7 @@ export const useFilterStore = create<FilterState>((set) => ({
   setMaxPrice: (value) => set({ maxPrice: value }),
   // The search term belongs to the field, not to the filter sheet, so "Clear
   // all" leaves it alone.
-  resetFilters: () =>
-    set({ type: null, bedrooms: null, minPrice: null, maxPrice: null }),
+  resetFilters: () => set({ type: null, bedrooms: null, minPrice: null, maxPrice: null }),
 }));
 
 /** How many of the sheet's filters are on. Drives the count badge (§8.5). */

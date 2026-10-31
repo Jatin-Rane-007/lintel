@@ -64,9 +64,7 @@ export function Badge({ label, tone = 'featured', showIcon = true, style }: Badg
 
   return (
     <View style={[styles.badge, { backgroundColor: background(colors) }, style]}>
-      {showIcon && tone !== 'featured' ? (
-        <Icon glyph={icon} size="sm" tone={text} />
-      ) : null}
+      {showIcon && tone !== 'featured' ? <Icon glyph={icon} size="sm" tone={text} /> : null}
       <ThemedText variant="label" tone={text}>
         {label}
       </ThemedText>

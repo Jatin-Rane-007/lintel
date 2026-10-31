@@ -39,7 +39,12 @@ export default function MapScreen() {
     <Screen edges={['top', 'left', 'right', 'bottom']}>
       <Gutter style={styles.header}>
         <View style={styles.headerRow}>
-          <IconButton glyph={ArrowLeft} label="Back" variant="plain" onPress={() => router.back()} />
+          <IconButton
+            glyph={ArrowLeft}
+            label="Back"
+            variant="plain"
+            onPress={() => router.back()}
+          />
           <View style={styles.titles}>
             <ThemedText variant="h4" numberOfLines={1}>
               {title ?? 'Location'}
@@ -74,8 +79,8 @@ export default function MapScreen() {
         <View style={styles.centered}>
           <ThemedText variant="h3">No pin for this listing.</ThemedText>
           <ThemedText variant="bodySm" tone="textSecondary" style={styles.centeredText}>
-            The agent has not placed this home on the map yet. The address on the
-            listing is still the right one.
+            The agent has not placed this home on the map yet. The address on the listing is still
+            the right one.
           </ThemedText>
           <Button
             label="Back to the listing"

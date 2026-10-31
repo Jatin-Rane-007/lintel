@@ -6,8 +6,8 @@ import { StyleSheet, View } from 'react-native';
 import { useSavedProperty } from '@/hooks/use-saved-property';
 import { useThemeColors } from '@/hooks/use-theme';
 import { formatArea, formatPrice } from '@/lib/utils';
-import type { Property } from '@/types';
 import { borderWidth, layout, radius, spacing } from '@/theme/tokens';
+import type { Property } from '@/types';
 
 import { ThemedText } from './themed-text';
 import { Badge } from './ui/badge';

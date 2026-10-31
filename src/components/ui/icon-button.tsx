@@ -37,7 +37,11 @@ export function IconButton({
 
   const surface =
     variant === 'paper'
-      ? { backgroundColor: colors.surface, borderWidth: borderWidth.hairline, borderColor: colors.borderHairline }
+      ? {
+          backgroundColor: colors.surface,
+          borderWidth: borderWidth.hairline,
+          borderColor: colors.borderHairline,
+        }
       : variant === 'inverse'
         ? { backgroundColor: colors.inverseBg, borderWidth: 0 }
         : { backgroundColor: 'transparent' };
@@ -52,11 +56,7 @@ export function IconButton({
       style={styles.target}
     >
       <View style={[styles.circle, surface]}>
-        <Icon
-          glyph={glyph}
-          size="md"
-          tone={variant === 'inverse' ? 'textInverse' : tone}
-        />
+        <Icon glyph={glyph} size="md" tone={variant === 'inverse' ? 'textInverse' : tone} />
       </View>
     </PressableScale>
   );

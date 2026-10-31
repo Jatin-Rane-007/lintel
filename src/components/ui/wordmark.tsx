@@ -43,9 +43,7 @@ export function Wordmark({
     // highlight around a focused node, and a branding mark that grabs focus
     // paints a grey box over the wordmark. The letters are read as text.
     <View style={styles.row}>
-      {mark ? (
-        <LintelMark size={size} style={[styles.mark, { marginRight: size * 0.34 }]} />
-      ) : null}
+      {mark ? <LintelMark size={size} style={[styles.mark, { marginRight: size * 0.34 }]} /> : null}
       <ThemedText
         variant="display"
         style={[styles.letters, { fontSize: size, lineHeight: size * 1.1, color: colors.text }]}

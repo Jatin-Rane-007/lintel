@@ -31,7 +31,13 @@ export function Screen({ children, edges = ['top', 'left', 'right'], style }: Sc
  * The one horizontal gutter. Every screen, header, section and list uses it,
  * which is what keeps all the left edges on the page in agreement.
  */
-export function Gutter({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
+export function Gutter({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+}) {
   return <View style={[styles.gutter, style]}>{children}</View>;
 }
 

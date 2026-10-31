@@ -98,9 +98,7 @@ export default function SavedScreen() {
                   params: { id: item.property_id },
                 })
               }
-              onUnsave={() =>
-                setSaved((previous) => previous.filter((row) => row.id !== item.id))
-              }
+              onUnsave={() => setSaved((previous) => previous.filter((row) => row.id !== item.id))}
             />
           </Gutter>
         )}
@@ -130,8 +128,7 @@ export default function SavedScreen() {
           saved.length > 0 ? (
             <Gutter style={styles.footnote}>
               <ThemedText variant="caption" tone="textMuted">
-                Saved homes sync with your account, so they follow you to another
-                device.
+                Saved homes sync with your account, so they follow you to another device.
               </ThemedText>
             </Gutter>
           ) : undefined
